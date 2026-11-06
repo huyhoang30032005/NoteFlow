@@ -8,10 +8,18 @@ class NoteDao(context: Context) {
 
     private val dbHelper = NoteDatabaseHelper(context)
 
+    // =================================================
+    // INSERT
+    // =================================================
+
     fun insert(note: Note): Long {
+
         val db = dbHelper.writableDatabase
 
-        val values = noteToValues(note, includeId = false)
+        val values = noteToValues(
+            note,
+            includeId = false
+        )
 
         return db.insert(
             NoteDatabaseHelper.TABLE_NOTES,
@@ -20,8 +28,14 @@ class NoteDao(context: Context) {
         )
     }
 
+    // =================================================
+    // GET ALL
+    // =================================================
+
     fun getAll(): List<Note> {
+
         val notes = mutableListOf<Note>()
+
         val db = dbHelper.readableDatabase
 
         val cursor = db.query(
@@ -43,18 +57,32 @@ class NoteDao(context: Context) {
         return notes
     }
 
+    // =================================================
+    // SEARCH / FILTER / SORT
+    // =================================================
+
     fun getFilteredNotes(
         keyword: String,
         category: String,
         sort: String
     ): List<Note> {
+
         val notes = mutableListOf<Note>()
+
         val db = dbHelper.readableDatabase
 
-        val selectionParts = mutableListOf<String>()
-        val selectionArgs = mutableListOf<String>()
+        val selectionParts =
+            mutableListOf<String>()
+
+        val selectionArgs =
+            mutableListOf<String>()
+
+        // ---------------------------------------------
+        // SEARCH
+        // ---------------------------------------------
 
         if (keyword.isNotBlank()) {
+
             selectionParts.add(
                 "(" +
                         "${NoteDatabaseHelper.COLUMN_TITLE} LIKE ? " +
@@ -63,22 +91,51 @@ class NoteDao(context: Context) {
             )
 
             val searchValue = "%$keyword%"
+
             selectionArgs.add(searchValue)
             selectionArgs.add(searchValue)
         }
 
+        // ---------------------------------------------
+        // CATEGORY FILTER
+        // ---------------------------------------------
+
         if (category != "Tất cả") {
+
             selectionParts.add(
                 "${NoteDatabaseHelper.COLUMN_CATEGORY} = ?"
             )
+
             selectionArgs.add(category)
         }
+
+        // ---------------------------------------------
+        // FAVORITE FILTER
+        // ---------------------------------------------
+
+        if (sort == "Yêu thích") {
+
+            selectionParts.add(
+                "${NoteDatabaseHelper.COLUMN_FAVORITE} = ?"
+            )
+
+            selectionArgs.add("1")
+        }
+
+        // ---------------------------------------------
+        // BUILD SELECTION
+        // ---------------------------------------------
 
         val selection = selectionParts
             .takeIf { it.isNotEmpty() }
             ?.joinToString(" AND ")
 
+        // ---------------------------------------------
+        // SORT ORDER
+        // ---------------------------------------------
+
         val orderBy = when (sort) {
+
             "Cũ nhất" ->
                 "${NoteDatabaseHelper.COLUMN_CREATED_AT} ASC"
 
@@ -86,26 +143,40 @@ class NoteDao(context: Context) {
                 "${NoteDatabaseHelper.COLUMN_CREATED_AT} DESC"
         }
 
+        // ---------------------------------------------
+        // QUERY DATABASE
+        // ---------------------------------------------
+
         val cursor = db.query(
             NoteDatabaseHelper.TABLE_NOTES,
             null,
             selection,
-            selectionArgs.takeIf { it.isNotEmpty() }?.toTypedArray(),
+            selectionArgs
+                .takeIf { it.isNotEmpty() }
+                ?.toTypedArray(),
             null,
             null,
             orderBy
         )
 
         cursor.use {
+
             while (it.moveToNext()) {
-                notes.add(cursorToNote(it))
+                notes.add(
+                    cursorToNote(it)
+                )
             }
         }
 
         return notes
     }
 
+    // =================================================
+    // GET BY ID
+    // =================================================
+
     fun getById(id: Int): Note? {
+
         val db = dbHelper.readableDatabase
 
         val cursor = db.query(
@@ -119,6 +190,7 @@ class NoteDao(context: Context) {
         )
 
         cursor.use {
+
             return if (it.moveToFirst()) {
                 cursorToNote(it)
             } else {
@@ -127,9 +199,18 @@ class NoteDao(context: Context) {
         }
     }
 
+    // =================================================
+    // UPDATE
+    // =================================================
+
     fun update(note: Note): Int {
+
         val db = dbHelper.writableDatabase
-        val values = noteToValues(note, includeId = false)
+
+        val values = noteToValues(
+            note,
+            includeId = false
+        )
 
         return db.update(
             NoteDatabaseHelper.TABLE_NOTES,
@@ -139,7 +220,12 @@ class NoteDao(context: Context) {
         )
     }
 
+    // =================================================
+    // DELETE
+    // =================================================
+
     fun delete(id: Int): Int {
+
         val db = dbHelper.writableDatabase
 
         return db.delete(
@@ -149,16 +235,18 @@ class NoteDao(context: Context) {
         )
     }
 
-    /**
-     * Thay thế toàn bộ ghi chú bằng dữ liệu sao lưu.
-     * Nếu có lỗi, SQLite sẽ rollback giao dịch.
-     */
+    // =================================================
+    // RESTORE ALL
+    // =================================================
+
     fun restoreAll(notes: List<Note>) {
+
         val db = dbHelper.writableDatabase
 
         db.beginTransaction()
 
         try {
+
             db.delete(
                 NoteDatabaseHelper.TABLE_NOTES,
                 null,
@@ -166,6 +254,7 @@ class NoteDao(context: Context) {
             )
 
             for (note in notes) {
+
                 val values = noteToValues(
                     note,
                     includeId = true
@@ -183,17 +272,26 @@ class NoteDao(context: Context) {
             }
 
             db.setTransactionSuccessful()
+
         } finally {
+
             db.endTransaction()
         }
     }
+
+    // =================================================
+    // NOTE TO CONTENT VALUES
+    // =================================================
 
     private fun noteToValues(
         note: Note,
         includeId: Boolean
     ): ContentValues {
+
         return ContentValues().apply {
+
             if (includeId) {
+
                 put(
                     NoteDatabaseHelper.COLUMN_ID,
                     note.id
@@ -232,40 +330,52 @@ class NoteDao(context: Context) {
         }
     }
 
+    // =================================================
+    // CURSOR TO NOTE
+    // =================================================
+
     private fun cursorToNote(
         cursor: android.database.Cursor
     ): Note {
+
         return Note(
+
             id = cursor.getInt(
                 cursor.getColumnIndexOrThrow(
                     NoteDatabaseHelper.COLUMN_ID
                 )
             ),
+
             title = cursor.getString(
                 cursor.getColumnIndexOrThrow(
                     NoteDatabaseHelper.COLUMN_TITLE
                 )
             ),
+
             content = cursor.getString(
                 cursor.getColumnIndexOrThrow(
                     NoteDatabaseHelper.COLUMN_CONTENT
                 )
             ),
+
             category = cursor.getString(
                 cursor.getColumnIndexOrThrow(
                     NoteDatabaseHelper.COLUMN_CATEGORY
                 )
             ),
+
             isFavorite = cursor.getInt(
                 cursor.getColumnIndexOrThrow(
                     NoteDatabaseHelper.COLUMN_FAVORITE
                 )
             ) == 1,
+
             createdAt = cursor.getLong(
                 cursor.getColumnIndexOrThrow(
                     NoteDatabaseHelper.COLUMN_CREATED_AT
                 )
             ),
+
             updatedAt = cursor.getLong(
                 cursor.getColumnIndexOrThrow(
                     NoteDatabaseHelper.COLUMN_UPDATED_AT

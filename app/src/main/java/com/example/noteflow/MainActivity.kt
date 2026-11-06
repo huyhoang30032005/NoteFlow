@@ -28,9 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(
-            layoutInflater
-        )
+        binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
@@ -100,9 +98,7 @@ class MainActivity : AppCompatActivity() {
                     isFavorite = !note.isFavorite
                 )
 
-                noteDao.update(
-                    updatedNote
-                )
+                noteDao.update(updatedNote)
 
                 loadNotes()
             }
@@ -110,10 +106,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerNotes.apply {
 
-            layoutManager =
-                LinearLayoutManager(
-                    this@MainActivity
-                )
+            layoutManager = LinearLayoutManager(
+                this@MainActivity
+            )
 
             adapter = noteAdapter
         }
@@ -190,9 +185,7 @@ class MainActivity : AppCompatActivity() {
         updateCategoryStyle()
     }
 
-    private fun selectCategory(
-        category: String
-    ) {
+    private fun selectCategory(category: String) {
 
         selectedCategory = category
 
@@ -266,8 +259,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        categories.forEach {
-                (category, chip, colors) ->
+        categories.forEach { (category, chip, colors) ->
 
             val selected =
                 selectedCategory == category
@@ -300,14 +292,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     // =================================================
-    // SORT
+    // SORT / FAVORITE FILTER
     // =================================================
 
     private fun setupSort() {
 
         val sortOptions = arrayOf(
             "Mới nhất",
-            "Cũ nhất"
+            "Cũ nhất",
+            "Yêu thích"
         )
 
         val adapter = ArrayAdapter(
@@ -316,9 +309,7 @@ class MainActivity : AppCompatActivity() {
             sortOptions
         )
 
-        binding.sortDropdown.setAdapter(
-            adapter
-        )
+        binding.sortDropdown.setAdapter(adapter)
 
         binding.sortDropdown.setText(
             selectedSort,
@@ -326,7 +317,6 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.sortDropdown.setOnClickListener {
-
             binding.sortDropdown.showDropDown()
         }
 
@@ -385,9 +375,7 @@ class MainActivity : AppCompatActivity() {
                 sort = selectedSort
             )
 
-        noteAdapter.updateData(
-            notes
-        )
+        noteAdapter.updateData(notes)
     }
 
     override fun onResume() {

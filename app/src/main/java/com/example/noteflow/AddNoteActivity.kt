@@ -272,13 +272,14 @@ class AddNoteActivity : AppCompatActivity() {
 
     private fun updateFavoriteIcon() {
 
-        binding.btnFavorite.setImageResource(
-            R.drawable.favourite
-        )
+        if (isFavorite) {
 
-        binding.btnFavorite.imageTintList =
-            if (isFavorite) {
+            // Đã yêu thích: dùng icon trái tim đặc
+            binding.btnFavorite.setImageResource(
+                R.drawable.ic_favorite
+            )
 
+            binding.btnFavorite.imageTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         this,
@@ -286,15 +287,21 @@ class AddNoteActivity : AppCompatActivity() {
                     )
                 )
 
-            } else {
+        } else {
 
+            // Chưa yêu thích: giữ icon mặc định
+            binding.btnFavorite.setImageResource(
+                R.drawable.favourite
+            )
+
+            binding.btnFavorite.imageTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         this,
                         R.color.light_text_secondary
                     )
                 )
-            }
+        }
     }
 
     // =========================================================
