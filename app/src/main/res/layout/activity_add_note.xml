@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
+
+    <!-- ==================== HEADER ==================== -->
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="@dimen/icon_button_size"
+        android:layout_height="@dimen/icon_button_size"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Quay lại"
+        android:src="@drawable/arrow_back"
+        app:tint="?attr/colorOnSurface"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ghi chú mới"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack" />
+
+    <ImageButton
+        android:id="@+id/btnFavorite"
+        android:layout_width="@dimen/icon_button_size"
+        android:layout_height="@dimen/icon_button_size"
+        android:layout_marginEnd="@dimen/spacing_small"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Yêu thích"
+        android:src="@drawable/favourite"
+        app:tint="?attr/colorOnSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnBack" />
+
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/top_spacing"
+            android:paddingBottom="@dimen/spacing_large">
+
+            <!-- ==================== TIÊU ĐỀ ==================== -->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/titleInputLayout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/left_spacing"
+                android:layout_marginEnd="@dimen/right_spacing"
+                android:hint="Tiêu đề"
+                app:boxCornerRadiusTopStart="@dimen/corner_normal"
+                app:boxCornerRadiusTopEnd="@dimen/corner_normal"
+                app:boxCornerRadiusBottomStart="@dimen/corner_normal"
+                app:boxCornerRadiusBottomEnd="@dimen/corner_normal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:textSize="@dimen/text_body" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!-- ==================== CATEGORY ==================== -->
+
+            <TextView
+                android:id="@+id/tvCategoryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/left_spacing"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:text="Chọn danh mục"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCategoryDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/left_spacing"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="Phân loại ghi chú để dễ tìm kiếm"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textSize="@dimen/text_caption" />
+
+
+            <!-- ==================== CATEGORY GRID ==================== -->
+
+            <GridLayout
+                android:id="@+id/categoryGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/left_spacing"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/right_spacing"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:useDefaultMargins="false">
+
+                <!-- Công việc -->
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipWork"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/chip_height"
+                    android:layout_columnWeight="1"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    android:text="●  Công việc"
+                    android:textColor="@color/category_work"
+                    android:textSize="@dimen/text_caption"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/category_work_bg"
+                    app:chipStrokeColor="@color/category_work"
+                    app:chipStrokeWidth="1dp"
+                    app:chipCornerRadius="@dimen/corner_large" />
+
+                <!-- Cá nhân -->
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPersonal"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/chip_height"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    android:text="●  Cá nhân"
+                    android:textColor="@color/category_personal"
+                    android:textSize="@dimen/text_caption"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/category_personal_bg"
+                    app:chipStrokeColor="@color/category_personal"
+                    app:chipStrokeWidth="1dp"
+                    app:chipCornerRadius="@dimen/corner_large" />
+
+                <!-- Học tập -->
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipStudy"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/chip_height"
+                    android:layout_columnWeight="1"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:text="●  Học tập"
+                    android:textColor="@color/category_study"
+                    android:textSize="@dimen/text_caption"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/category_study_bg"
+                    app:chipStrokeColor="@color/category_study"
+                    app:chipStrokeWidth="1dp"
+                    app:chipCornerRadius="@dimen/corner_large" />
+
+                <!-- Ý tưởng -->
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipIdea"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/chip_height"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:text="●  Ý tưởng"
+                    android:textColor="@color/category_idea"
+                    android:textSize="@dimen/text_caption"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/category_idea_bg"
+                    app:chipStrokeColor="@color/category_idea"
+                    app:chipStrokeWidth="1dp"
+                    app:chipCornerRadius="@dimen/corner_large" />
+
+            </GridLayout>
+
+
+            <!-- ==================== NỘI DUNG ==================== -->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/contentInputLayout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="@dimen/left_spacing"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/right_spacing"
+                android:hint="Nội dung"
+                app:boxCornerRadiusTopStart="@dimen/corner_normal"
+                app:boxCornerRadiusTopEnd="@dimen/corner_normal"
+                app:boxCornerRadiusBottomStart="@dimen/corner_normal"
+                app:boxCornerRadiusBottomEnd="@dimen/corner_normal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:paddingTop="@dimen/spacing_medium"
+                    android:paddingBottom="@dimen/spacing_medium"
+                    android:textSize="@dimen/text_body" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!-- ==================== DELETE ==================== -->
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginStart="@dimen/left_spacing"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/right_spacing"
+                android:text="Xóa ghi chú"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold"
+                android:textColor="@color/error"
+                app:backgroundTint="@android:color/transparent"
+                app:cornerRadius="@dimen/corner_normal"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/error" />
+
+
+            <!-- ==================== SAVE ==================== -->
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginStart="@dimen/left_spacing"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/right_spacing"
+                android:text="Lưu ghi chú"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold"
+                app:backgroundTint="@color/secondary"
+                app:cornerRadius="@dimen/corner_normal" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

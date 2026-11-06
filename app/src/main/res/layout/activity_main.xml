@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_background"
+    tools:context=".MainActivity">
+
+    <!-- TÊN APP -->
+    <TextView
+        android:id="@+id/bigTiltle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/left_spacing"
+        android:layout_marginTop="@dimen/top_spacing"
+        android:text="NoteFlow"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- TÀI KHOẢN -->
+    <ImageView
+        android:id="@+id/accountIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/top_spacing"
+        android:layout_marginEnd="@dimen/right_spacing"
+        android:contentDescription="Tài khoản"
+        android:tint="@color/account_icon_color"
+        android:src="@drawable/account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- THANH TÌM KIẾM -->
+    <com.google.android.material.search.SearchBar
+        android:id="@+id/searchBar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="@dimen/left_spacing"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/right_spacing"
+        android:hint="Tìm kiếm ghi chú"
+        android:backgroundTint="@color/background_surface"
+        app:strokeColor="@color/light_border"
+        app:strokeWidth="1.5dp"
+        app:layout_constraintTop_toBottomOf="@id/bigTiltle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--
+        SEARCH VIEW
+
+        SearchView sẽ được mở khi người dùng
+        bấm vào SearchBar.
+    -->
+
+    <!-- PHÂN LOẠI -->
+    <com.google.android.material.search.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="Tìm kiếm ghi chú"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <HorizontalScrollView
+        android:id="@+id/categoryScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/searchBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/categoryGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/left_spacing"
+            android:paddingTop="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/right_spacing"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <!-- TẤT CẢ -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Tất cả"
+                android:textColor="@drawable/chip_text"
+                app:chipBackgroundColor="@drawable/chip_background"
+                app:chipStrokeColor="@color/chip_border"
+                app:chipStrokeWidth="1.5dp" />
+
+            <!-- CÔNG VIỆC -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Công việc"
+                android:textColor="@color/category_work"
+                app:chipBackgroundColor="@drawable/chip_background"
+                app:chipStrokeColor="@color/category_work"
+                app:chipStrokeWidth="1.5dp" />
+
+            <!-- CÁ NHÂN -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPersonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cá nhân"
+                android:textColor="@color/category_personal"
+                app:chipBackgroundColor="@drawable/chip_background"
+                app:chipStrokeColor="@color/category_personal"
+                app:chipStrokeWidth="1.5dp" />
+
+            <!-- HỌC TẬP -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipStudy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Học tập"
+                android:textColor="@color/category_study"
+                app:chipBackgroundColor="@drawable/chip_background"
+                app:chipStrokeColor="@color/category_study"
+                app:chipStrokeWidth="1.5dp" />
+
+            <!-- Ý TƯỞNG -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipIdeas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ý tưởng"
+                android:textColor="@color/category_idea"
+                app:chipBackgroundColor="@drawable/chip_background"
+                app:chipStrokeColor="@color/category_idea"
+                app:chipStrokeWidth="1.5dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+    <!-- SẮP XẾP -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sortLayout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/right_spacing"
+        android:hint="Sắp xếp"
+        app:layout_constraintTop_toBottomOf="@id/categoryScroll"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/sortDropdown"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:text="Mới nhất"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- RECYCLER VIEW -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerNotes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="80dp"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/sortLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- NÚT THÊM -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:contentDescription="Thêm ghi chú"
+        app:srcCompat="@drawable/add"
+        app:tint="@android:color/white"
+        app:backgroundTint="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

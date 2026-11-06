@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ================= BRAND COLORS ================= -->
+    <color name="primary">#36B8C0</color>
+    <color name="secondary">#82A8F5</color>
+    <color name="primary_very_light">#203C43</color>
+
+    <!-- ================= DARK MODE ================= -->
+    <color name="light_background">#111923</color>
+    <color name="background_surface">#1B2634</color>
+
+    <color name="light_text_primary">#F0F4F8</color>
+    <color name="light_text_secondary">#AAB8C8</color>
+    <color name="light_text_disabled">#718094</color>
+
+    <color name="light_border">#344356</color>
+    <color name="light_icon">#B2C2D4</color>
+
+    <!-- ================= NOTE CATEGORIES ================= -->
+
+    <!-- Công việc -->
+    <color name="category_work">#48C99A</color>
+    <color name="category_work_bg">#203B35</color>
+
+    <!-- Cá nhân -->
+    <color name="category_personal">#FFAD70</color>
+    <color name="category_personal_bg">#423126</color>
+
+    <!-- Học tập -->
+    <color name="category_study">#83ACFF</color>
+    <color name="category_study_bg">#263754</color>
+
+    <!-- Ý tưởng -->
+    <color name="category_idea">#C49AEF</color>
+    <color name="category_idea_bg">#392C4B</color>
+
+    <!-- ================= STATUS COLORS ================= -->
+    <color name="error">#FF6B78</color>
+    <color name="success">#48C99A</color>
+    <color name="warning">#FFAD70</color>
+    <color name="info">#83ACFF</color>
+
+    <!-- ================= CATEGORY CHIPS ================= -->
+    <color name="chip_bgr">#203C43</color>
+    <color name="chip_border">#367C83</color>
+    <color name="text_chip">#80E0E4</color>
+
+    <!-- ================= FAVORITE ================= -->
+    <color name="favorite">#FF7185</color>
+
+    <!-- ================= COMMON COLORS ================= -->
+    <color name="black">#111923</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="account_icon_color">#FFFFFF</color>
+</resources>

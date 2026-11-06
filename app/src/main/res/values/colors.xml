@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- ================= BRAND COLORS ================= -->
+    <color name="primary">#087F8C</color>
+    <color name="secondary">#3559A8</color>
+    <color name="primary_very_light">#DDF4F5</color>
+
+    <!-- ================= LIGHT MODE ================= -->
+    <color name="light_background">#F3F6FA</color>
+    <color name="background_surface">#E9EEF5</color>
+
+    <color name="light_text_primary">#202D3A</color>
+    <color name="light_text_secondary">#637184</color>
+    <color name="light_text_disabled">#A0ACBA</color>
+
+    <color name="light_border">#D6DFEA</color>
+    <color name="light_icon">#52647A</color>
+
+    <!-- ================= NOTE CATEGORIES ================= -->
+
+    <!-- Công việc: Green -->
+    <color name="category_work">#16805D</color>
+    <color name="category_work_bg">#E1F4EB</color>
+
+    <!-- Cá nhân: Orange -->
+    <color name="category_personal">#C06A27</color>
+    <color name="category_personal_bg">#FFF0E2</color>
+
+    <!-- Học tập: Blue -->
+    <color name="category_study">#356CCB</color>
+    <color name="category_study_bg">#E5EEFF</color>
+
+    <!-- Ý tưởng: Purple -->
+    <color name="category_idea">#8752B5</color>
+    <color name="category_idea_bg">#F0E7FA</color>
+
+    <!-- ================= STATUS COLORS ================= -->
+    <color name="error">#D93645</color>
+    <color name="success">#16805D</color>
+    <color name="warning">#C06A27</color>
+    <color name="info">#356CCB</color>
+
+    <!-- ================= CATEGORY CHIPS ================= -->
+    <color name="chip_bgr">#DDF4F5</color>
+    <color name="chip_border">#87CFD3</color>
+    <color name="text_chip">#086873</color>
+
+    <!-- ================= FAVORITE ================= -->
+    <color name="favorite">#E04455</color>
+
+    <color name="account_icon_color">#000000</color>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ==================== SPACING ==================== -->
+
+    <dimen name="left_spacing">25dp</dimen>
+    <dimen name="right_spacing">25dp</dimen>
+    <dimen name="top_spacing">25dp</dimen>
+
+    <dimen name="spacing_normal">10dp</dimen>
+    <dimen name="spacing_small">5dp</dimen>
+    <dimen name="spacing_medium">15dp</dimen>
+    <dimen name="spacing_large">20dp</dimen>
+
+
+    <!-- ==================== TEXT SIZE ==================== -->
+
+    <dimen name="text_title">25sp</dimen>
+    <dimen name="text_medium">20sp</dimen>
+    <dimen name="text_small">15sp</dimen>
+    <dimen name="text_normal">10sp</dimen>
+
+    <dimen name="text_body">16sp</dimen>
+    <dimen name="text_caption">12sp</dimen>
+
+
+    <!-- ==================== COMPONENT ==================== -->
+
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="chip_height">42dp</dimen>
+    <dimen name="icon_button_size">48dp</dimen>
+
+    <dimen name="corner_small">10dp</dimen>
+    <dimen name="corner_normal">14dp</dimen>
+    <dimen name="corner_large">20dp</dimen>
+
+</resources>
